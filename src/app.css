@@ -18,14 +18,16 @@
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	font-family: var(--font-body);
-	color: var(--color-text);
+	color: CanvasText;
+	color-scheme: light dark;
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: white;
+	background-color: Canvas;
+	color: CanvasText;
 	background-size: 100vw 100vh;
 }
 
@@ -44,12 +46,11 @@ p {
 }
 
 a {
-	color: var(--color-theme-2);
 	text-decoration: underline;
 }
 
 a:hover {
-	color: var(--color-theme-3);
+	color: light-dark(var(--color-theme-2), var(--color-bg-1));
 }
 
 button:hover {
