@@ -7,9 +7,11 @@
 	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	--font-mono: 'Fira Mono', monospace;
+	--color-bg: #e5dede;
 	--color-bg-0: rgb(202, 216, 228);
 	--color-bg-1: hsl(209, 36%, 86%);
 	--color-bg-2: hsl(224, 44%, 95%);
+	--color-bg-dark: #000;
 	--color-theme-1: #cc2446;
 	--color-theme-2: #36628c;
 	--color-theme-3: #732e8b;
@@ -26,7 +28,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	background-attachment: fixed;
-	background-color: Canvas;
+	background-color: light-dark(var(--color-bg), var(--color-bg-dark));
 	color: CanvasText;
 	background-size: 100vw 100vh;
 }
