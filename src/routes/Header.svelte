@@ -4,7 +4,7 @@
 
 <header class="flex justify-center">
 	<nav class="flex">
-		<svg viewBox="0 0 2 3" aria-hidden="true">
+		<svg class="nav-decoration" viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
@@ -27,7 +27,7 @@
 				<a href="/motion">Motion</a>
 			</li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
+		<svg class="nav-decoration" viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 		</svg>
 	</nav>
@@ -66,16 +66,8 @@
 		height: 100%;
 	}
 
-	li[aria-current='page']::before {
-		--size: 12px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
+	li[aria-current='page'] {
+		text-decoration: underline;
 	}
 
 	nav a {
@@ -85,8 +77,7 @@
 		padding: 0 0.5rem;
 		color: var(--color-text);
 		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
+		font-size: 1rem;
 		letter-spacing: 0.1em;
 		text-decoration: none;
 		transition: color 0.2s linear;
@@ -95,5 +86,11 @@
 	a:hover {
 		color: var(--color-theme-1);
 		text-decoration: underline;
+	}
+
+	@media (forced-colors: active) {
+		.nav-decoration {
+			display: none;
+		}
 	}
 </style>
