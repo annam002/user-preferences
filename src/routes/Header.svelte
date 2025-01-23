@@ -14,14 +14,14 @@
 			<li aria-current={$page.url.pathname === '/mode' ? 'page' : undefined}>
 				<a href="/mode">Color Scheme</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/system-colors' ? 'page' : undefined}>
-				<a href="/system-colors">System Colors</a>
-			</li>
 			<li aria-current={$page.url.pathname === '/light-dark' ? 'page' : undefined}>
 				<a href="/light-dark">Light-Dark</a>
 			</li>
+			<li aria-current={$page.url.pathname === '/system-colors' ? 'page' : undefined}>
+				<a href="/system-colors">System Colors</a>
+			</li>
 			<li aria-current={$page.url.pathname === '/contrast' ? 'page' : undefined}>
-				<a href="/contrast">Contrast</a>
+				<a href="/contrast">Forced Colors</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/motion' ? 'page' : undefined}>
 				<a href="/motion">Motion</a>
