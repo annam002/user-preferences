@@ -23,12 +23,12 @@
 	</p>
 	<div class="flex flex-col items-start gap-4 py-4">
 		<h2>Adapt styling to color scheme using light-dark CSS property</h2>
+		<div class="styled-with-light-dark">This box looks good in light & dark theme</div>
 		<samp>{@html styledWithLightDark}</samp>
 		<p>
 			Not (yet) supported in all browsers, check
 			<a href="https://caniuse.com/?search=light-dark">can-i-use page</a>.
 		</p>
-		<div class="styled-with-light-dark">This box looks good in light & dark theme</div>
 	</div>
 </div>
 
@@ -37,6 +37,6 @@
 		color-scheme: light dark;
 		color: light-dark(#3d4245, #cedce8);
 		background-color: light-dark(#cedce8, #3d4245);
-		padding: 1rem 1rem;
+		padding: 2rem;
 	}
 </style>

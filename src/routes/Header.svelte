@@ -11,8 +11,11 @@
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/mode' ? 'page' : undefined}>
-				<a href="/mode">Color Scheme</a>
+			<li aria-current={$page.url.pathname === '/prefers-color-scheme' ? 'page' : undefined}>
+				<a href="/prefers-color-scheme">Prefers Color Scheme</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/color-scheme' ? 'page' : undefined}>
+				<a href="/color-scheme">Color Scheme</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/light-dark' ? 'page' : undefined}>
 				<a href="/light-dark">Light-Dark</a>
@@ -20,8 +23,8 @@
 			<li aria-current={$page.url.pathname === '/system-colors' ? 'page' : undefined}>
 				<a href="/system-colors">System Colors</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/contrast' ? 'page' : undefined}>
-				<a href="/contrast">Forced Colors</a>
+			<li aria-current={$page.url.pathname === '/forced-colors' ? 'page' : undefined}>
+				<a href="/forced-colors">Forced Colors</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/motion' ? 'page' : undefined}>
 				<a href="/motion">Motion</a>

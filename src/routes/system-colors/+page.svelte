@@ -8,6 +8,11 @@
 	const buttonFocusStyle = `button:focus-visible {<br>
 &nbsp;&nbsp;outline: 3px solid black;<br>
 &nbsp;&nbsp;box-shadow: 0 0 0 6px white;<br>
+}<br>
+@media (forced-colors: active) {<br>
+&nbsp;&nbsp;button:focus-visible {<br>
+&nbsp;&nbsp;&nbsp;outline: 3px solid CanvasText;<br>
+&nbsp;}<br>
 }`;
 </script>
 
@@ -27,8 +32,9 @@
 
 	<div class="flex flex-col items-start gap-4 py-4">
 		<h2>Using system colors for dark/light mode</h2>
-		<samp>{@html styledWithSystemColors}</samp>
 		<div class="styled-with-system-colors">This box looks good in light & dark theme</div>
+		<samp>{@html styledWithSystemColors}</samp>
+
 		<h2>Current system colors:</h2>
 		<ul class="grid list-none grid-cols-2 gap-4">
 			<li>
@@ -127,12 +133,18 @@
 		color: CanvasText;
 		background-color: Canvas;
 		border: 1px solid ButtonBorder;
-		padding: 1rem 1rem;
+		padding: 2rem;
 	}
 
 	button:focus-visible {
 		outline: 3px solid black;
 		box-shadow: 0 0 0 6px white;
+	}
+
+	@media (forced-colors: active) {
+		button:focus-visible {
+			outline: 3px solid CanvasText;
+		}
 	}
 
 	button:hover {
