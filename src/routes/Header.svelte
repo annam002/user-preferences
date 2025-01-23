@@ -68,6 +68,7 @@
 
 	li[aria-current='page'] {
 		text-decoration: underline;
+		text-decoration-color: var(--color-text);
 	}
 
 	nav a {
