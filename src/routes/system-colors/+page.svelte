@@ -21,8 +21,6 @@
 </svelte:head>
 
 <div class="text-column schemed">
-	<h1>System Colors</h1>
-
 	<p>Toggle light and dark mode in OS to see the changes on this page.</p>
 
 	<p>

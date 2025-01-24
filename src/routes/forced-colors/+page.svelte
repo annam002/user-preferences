@@ -3,8 +3,6 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Forced Colors</h1>
-
 	<p>
 		When forced-colors is active, your entire website colors are overwritten with colors specified
 		by the user.

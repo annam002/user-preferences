@@ -16,8 +16,6 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Color scheme</h1>
-
 	<p>Toggle light and dark mode in OS to see the changes on this page.</p>
 
 	<div class="flex flex-col items-start gap-4 py-4">

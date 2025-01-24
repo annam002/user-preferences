@@ -102,6 +102,12 @@ pre {
 	gap: 2rem;
 }
 
+@media (max-width: 768px) {
+	.text-column {
+		margin-left: 1rem;
+	}
+}
+
 input,
 button {
 	font-size: inherit;

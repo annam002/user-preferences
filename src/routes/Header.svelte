@@ -1,39 +1,116 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { tick } from 'svelte';
+	let menuParent;
+	const navItems = [
+		{ path: '/', label: 'Home' },
+		{ path: '/prefers-color-scheme', label: 'Prefers Color Scheme' },
+		{ path: '/color-scheme', label: 'Color Scheme' },
+		{ path: '/light-dark', label: 'Light-Dark' },
+		{ path: '/system-colors', label: 'System Colors' },
+		{ path: '/forced-colors', label: 'Forced Colors' }
+		//	{ path: '/motion', label: 'Motion' }
+	];
+	const currentNavItem = $derived(navItems.filter((i) => $page.url.pathname === i.path)[0]);
+	let selectedNavItem = $state(0);
+	let menuExpanded = $state(false);
+	const toggleMenu = () => {
+		menuExpanded = !menuExpanded;
+		tick().then(() => {
+			if (menuExpanded && menuParent !== undefined) {
+				selectedNavItem = 0;
+				menuParent.getElementsByTagName('a').item(0).focus();
+			}
+		});
+	};
+	page.subscribe(() => {
+		menuExpanded = false;
+	});
+
+	const focusElement = (id: string) => {
+		const element = document.getElementById(id);
+		if (element) {
+			element.focus();
+		}
+	};
+
+	const handleKeyDown = (event: KeyboardEvent) => {
+		switch (event.key) {
+			case 'Up':
+			case 'ArrowUp':
+			case 'Left':
+			case 'ArrowLeft':
+				selectedNavItem = selectedNavItem === 0 ? navItems.length - 1 : selectedNavItem - 1;
+				focusElement('navitem-' + selectedNavItem);
+				event.stopPropagation();
+				event.preventDefault();
+				return;
+
+			case 'Down':
+			case 'ArrowDown':
+			case 'Right':
+			case 'ArrowRight':
+				selectedNavItem = selectedNavItem === navItems.length - 1 ? 0 : selectedNavItem + 1;
+				focusElement('navitem-' + selectedNavItem);
+				event.stopPropagation();
+				event.preventDefault();
+				return;
+			case 'Escape':
+				menuExpanded = false;
+				focusElement('menubutton');
+				event.stopPropagation();
+				event.preventDefault();
+				return;
+		}
+	};
 </script>
 
-<header class="flex justify-center">
+<header class="flex flex-row items-center gap-8 px-4 lg:flex-col lg:justify-center">
 	<nav class="flex">
-		<svg class="nav-decoration" viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/prefers-color-scheme' ? 'page' : undefined}>
-				<a href="/prefers-color-scheme">Prefers Color Scheme</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/color-scheme' ? 'page' : undefined}>
-				<a href="/color-scheme">Color Scheme</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/light-dark' ? 'page' : undefined}>
-				<a href="/light-dark">Light-Dark</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/system-colors' ? 'page' : undefined}>
-				<a href="/system-colors">System Colors</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/forced-colors' ? 'page' : undefined}>
-				<a href="/forced-colors">Forced Colors</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/motion' ? 'page' : undefined}>
-				<a href="/motion">Motion</a>
-			</li>
-		</ul>
-		<svg class="nav-decoration" viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
+		<div class="block lg:hidden" bind:this={menuParent}>
+			<button
+				type="button"
+				id="menubutton"
+				onclick={() => toggleMenu()}
+				aria-haspopup="true"
+				aria-controls="menu"
+				aria-expanded={menuExpanded}
+				aria-label="Menu"><img src="hamburger.png" alt="" height="24" width="24" /></button>
+			{#if menuExpanded}
+				<ul
+					id="menu"
+					role="menu"
+					aria-labelledby="menubutton"
+					onkeydown={(event) => handleKeyDown(event)}>
+					{#each navItems as navItem, index}
+						<li role="none">
+							<a
+								id={`navitem-${index}`}
+								aria-current={currentNavItem.path === navItem.path ? 'page' : undefined}
+								role="menuitem"
+								href={navItem.path}>{navItem.label}</a>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
+		<div class="hidden lg:flex">
+			<svg class="nav-decoration" viewBox="0 0 2 3" aria-hidden="true">
+				<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
+			</svg>
+			<ul class="horizontal-menu">
+				{#each navItems as navItem}
+					<li aria-current={currentNavItem.path === navItem.path ? 'page' : undefined}>
+						<a href={navItem.path}>{navItem.label}</a>
+					</li>
+				{/each}
+			</ul>
+			<svg class="nav-decoration" viewBox="0 0 2 3" aria-hidden="true">
+				<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
+			</svg>
+		</div>
 	</nav>
+	<h1>{currentNavItem.label}</h1>
 </header>
 
 <style>
@@ -51,7 +128,27 @@
 		fill: var(--background);
 	}
 
-	ul {
+	#menu {
+		list-style: none;
+		border: 1px solid black;
+		position: absolute;
+		background: var(--background);
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		padding: 0.5rem;
+	}
+
+	#menu a {
+		text-decoration: none;
+	}
+
+	#menu a[aria-current='page'] {
+		text-decoration: underline;
+		text-decoration-color: var(--color-text);
+	}
+
+	.horizontal-menu {
 		position: relative;
 		padding: 0;
 		margin: 0;
@@ -64,17 +161,17 @@
 		background-size: contain;
 	}
 
-	li {
+	.horizontal-menu li {
 		position: relative;
 		height: 100%;
 	}
 
-	li[aria-current='page'] {
+	.horizontal-menu li[aria-current='page'] {
 		text-decoration: underline;
 		text-decoration-color: var(--color-text);
 	}
 
-	nav a {
+	.horizontal-menu a {
 		display: flex;
 		height: 100%;
 		align-items: center;

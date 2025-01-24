@@ -3,8 +3,6 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Motion</h1>
-
 	<p>
 		Motion in websites can make users sick, cause migraines or seizures. Use animations sparingly,
 		and make do not run animations when user has preference set to reduce motion.
