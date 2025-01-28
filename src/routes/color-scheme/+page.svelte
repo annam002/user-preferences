@@ -22,6 +22,15 @@
 &nbsp;&nbsp;color: #cedce8;<br>
 &nbsp;&nbsp;padding: 1rem 1rem;<br>
 }`;
+	const colorSchemes = [
+		'light',
+		'dark',
+		'only light',
+		'only dark',
+		'light dark',
+		'dark light',
+		'normal'
+	];
 </script>
 
 <svelte:head>
@@ -44,22 +53,19 @@
 	<div class="mb-8 flex flex-col items-start gap-8 py-4">
 		<h2>Demonstrating differences with color-scheme</h2>
 		<div class="grid grid-cols-2 gap-12">
-			<div class="flex h-[200px] flex-col gap-4 overflow-y-scroll px-4" style="color-scheme:none">
-				<h3>Without color-scheme set</h3>
-				<label>Name: <input type="text" /></label>
-				<label>I agree: <input type="radio" /></label>
-				<p>Lorem ipsum dolor si amet.</p>
-				<p>Lorem ipsum dolor si amet.</p>
-				<p>Lorem ipsum dolor si amet.</p>
-			</div>
-			<div class="flex h-[200px] flex-col gap-4 overflow-y-scroll px-4">
-				<h3>With color-scheme: light dark</h3>
-				<label>Name: <input type="text" /></label>
-				<label>I agree: <input type="radio" /></label>
-				<p>Lorem ipsum dolor si amet.</p>
-				<p>Lorem ipsum dolor si amet.</p>
-				<p>Lorem ipsum dolor si amet.</p>
-			</div>
+			{#each colorSchemes as colorScheme}
+				<div
+					class="flex h-[200px] flex-col gap-4 overflow-y-scroll px-4"
+					style={`color-scheme:${colorScheme}`}>
+					<h3>With color-scheme {colorScheme}</h3>
+					<label>Name: <input type="text" /></label>
+					<label>I agree: <input type="radio" /></label>
+					<a href="/">A link</a>
+					<p>Lorem ipsum dolor si amet.</p>
+					<p>Lorem ipsum dolor si amet.</p>
+					<p>Lorem ipsum dolor si amet.</p>
+				</div>
+			{/each}
 		</div>
 	</div>
 </div>
