@@ -4,16 +4,6 @@
 &nbsp;&nbsp;color: CanvasText;<br>
 &nbsp;&nbsp;background-color: Canvas;<br>
 }`;
-
-	const buttonFocusStyle = `button:focus-visible {<br>
-&nbsp;&nbsp;outline: 3px solid black;<br>
-&nbsp;&nbsp;box-shadow: 0 0 0 6px white;<br>
-}<br>
-@media (forced-colors: active) {<br>
-&nbsp;&nbsp;button:focus-visible {<br>
-&nbsp;&nbsp;&nbsp;outline: 3px solid CanvasText;<br>
-&nbsp;}<br>
-}`;
 </script>
 
 <svelte:head>
@@ -107,22 +97,6 @@
 			</li>
 		</ul>
 	</div>
-
-	<div class="styled-with-system-colors flex flex-col items-start gap-4 py-4">
-		<h2 class="text-xl">Focus outlines</h2>
-		<p>
-			Focus outlines should be visible regardless of light or dark mode. This can be done with an
-			universal focus indicator. Tab to the button to test.
-		</p>
-		<button class="w-20 border border-gray-500">A button</button>
-		<samp>{@html buttonFocusStyle}</samp>
-		<p>
-			More on focus styles in the
-			<a href="https://www.sarasoueidan.com/blog/focus-indicators">
-				guide to designing accessible focus styles</a
-			>.
-		</p>
-	</div>
 </div>
 
 <style>
@@ -132,23 +106,6 @@
 		background-color: Canvas;
 		border: 1px solid ButtonBorder;
 		padding: 2rem;
-	}
-
-	button:focus-visible {
-		outline: 3px solid black;
-		box-shadow: 0 0 0 6px white;
-	}
-
-	@media (forced-colors: active) {
-		button:focus-visible {
-			outline: 3px solid CanvasText;
-		}
-	}
-
-	button:hover {
-		color-scheme: light dark;
-		color: light-dark(var(--color-theme-2), var(--color-theme-4));
-		border-color: light-dark(var(--color-theme-2), var(--color-theme-4));
 	}
 
 	.color-box {

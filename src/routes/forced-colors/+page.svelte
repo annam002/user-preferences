@@ -1,3 +1,15 @@
+<script>
+	const buttonFocusStyle = `button:focus-visible {<br>
+&nbsp;&nbsp;outline: 3px solid black;<br>
+&nbsp;&nbsp;box-shadow: 0 0 0 6px white;<br>
+}<br>
+@media (forced-colors: active) {<br>
+&nbsp;&nbsp;button:focus-visible {<br>
+&nbsp;&nbsp;&nbsp;outline: 3px solid CanvasText;<br>
+&nbsp;}<br>
+}`;
+</script>
+
 <svelte:head>
 	<title>Forced Colors</title>
 </svelte:head>
@@ -13,6 +25,10 @@
 		<li>On MacOS this can be turned on in Firefox in the settings</li>
 		<li>For simulation, you can toggle forced-colors in the rendering pane in Chrome.</li>
 	</ul>
+	<p>
+		Link to documentation: <a
+			href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors">forced-colors</a>
+	</p>
 	<p>Forced-colors overwrites it all, but you need to pay attention to some gotchas.</p>
 	<ul class="flex flex-col gap-4">
 		<li class="item-with-shadow">
@@ -52,10 +68,22 @@
 			</div>
 		</li>
 	</ul>
-	<p>
-		Link to documentation: <a
-			href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors">forced-colors</a>
-	</p>
+
+	<div class="styled-with-system-colors flex flex-col items-start gap-4 py-4">
+		<h2 class="text-xl">Focus outlines</h2>
+		<p>
+			Focus outlines should be visible regardless of light or dark mode with and without forced
+			colors active. This can be done with an universal focus indicator. Tab to the button to test.
+		</p>
+		<button class="proper-focus w-20 border border-gray-500">A button</button>
+		<samp>{@html buttonFocusStyle}</samp>
+		<p>
+			More on focus styles in the
+			<a href="https://www.sarasoueidan.com/blog/focus-indicators">
+				guide to designing accessible focus styles</a
+			>.
+		</p>
+	</div>
 </div>
 
 <style>
@@ -119,5 +147,22 @@
 	.wannabe-button:focus-visible {
 		outline: 2px solid ButtonBorder;
 		outline-offset: 2px;
+	}
+
+	.proper-focus:focus-visible {
+		outline: 3px solid black;
+		box-shadow: 0 0 0 6px white;
+	}
+
+	@media (forced-colors: active) {
+		.proper-focus:focus-visible {
+			outline: 3px solid CanvasText;
+		}
+	}
+
+	.proper-focus:hover {
+		color-scheme: light dark;
+		color: light-dark(var(--color-theme-2), var(--color-theme-4));
+		border-color: light-dark(var(--color-theme-2), var(--color-theme-4));
 	}
 </style>
