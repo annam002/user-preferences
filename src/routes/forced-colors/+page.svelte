@@ -19,17 +19,35 @@
 		When forced-colors is active, your entire website colors are overwritten with colors specified
 		by the user.
 	</p>
-	<p>This can be triggered as follows:</p>
+	<p>
+		There is only color for backgrounds, texts links and so on. The colors depend on the OS settings
+		and the browser.
+	</p>
+	<p>
+		Check the <a href="/system-colors">system colors page</a> to see which colors are currently effective.
+	</p>
+	<h2>Enabling forced colors mode</h2>
 	<ul>
 		<li>On Windows and Ubuntu: Turn on high-contrast mode</li>
-		<li>On MacOS this can be turned on in Firefox in the settings</li>
-		<li>For simulation, you can toggle forced-colors in the rendering pane in Chrome.</li>
+		<li>
+			On MacOS it is not natively supported. <br />
+			If you use Firefox, you can turn this on in the settings (search for "Colours").
+			<br />
+			If you use Chrome, you can emulate forced-colors on the rendering pane in the developer tools.
+		</li>
 	</ul>
+	<h2>Styling for forced colors</h2>
 	<p>
-		Link to documentation: <a
-			href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors">forced-colors</a>
+		Normally, you don't need to do anything specific to support forced colors. But there are some
+		gotchas you need to pay attention to
 	</p>
-	<p>Forced-colors overwrites it all, but you need to pay attention to some gotchas.</p>
+	<p>
+		If needed, you can used the <a
+			href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors">forced-colors</a>
+		media query to style for forced colors mode.
+	</p>
+
+	<h2>Forced colors gotchas</h2>
 	<ul class="flex flex-col gap-4">
 		<li class="item-with-shadow">
 			Shadows are gone. So if you use a shadow as differentiator you need to replace it.
@@ -39,7 +57,11 @@
 			separate elements, you need to use an outline instead.
 		</li>
 		<li>
-			<p>If colours are used to convey meaning, this will no longer work. Add another indicator.</p>
+			<p>
+				If colours are used to convey meaning (which is a bad idea anyways, see <a
+					href="https://www.w3.org/WAI/WCAG22/quickref/#use-of-color">WCAG 1.4.1</a
+				>), this will no longer work. Add another indicator.
+			</p>
 			<div class="flex items-center gap-4">
 				<div class="flex flex-col gap-2 border border-gray-500 p-4">
 					<em class="text-xl">Don't do this!</em>
@@ -70,7 +92,7 @@
 	</ul>
 
 	<div class="styled-with-system-colors flex flex-col items-start gap-4 py-4">
-		<h2 class="text-xl">Focus outlines</h2>
+		<h2 class="text-xl">Example: Focus outlines</h2>
 		<p>
 			Focus outlines should be visible regardless of light or dark mode with and without forced
 			colors active. This can be done with an universal focus indicator. Tab to the button to test.
