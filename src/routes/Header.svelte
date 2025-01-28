@@ -75,7 +75,29 @@
 				aria-haspopup="true"
 				aria-controls="menu"
 				aria-expanded={menuExpanded}
-				aria-label="Menu"><img src="hamburger.png" alt="" height="24" width="24" /></button>
+				aria-label="Menu">
+				<svg
+					class="menubutton-icon"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 48 48"
+					height="48"
+					width="48"
+					aria-hidden="true">
+					<g>
+						<path
+							d="M3 5h42s2 0 2 2v2s0 2 -2 2h-42s-2 0 -2 -2v-2s0 -2 2 -2"
+							fill="currentColor"
+							stroke-width="2"></path>
+						<path
+							d="M3 21h42s2 0 2 2v2s0 2 -2 2h-42s-2 0 -2 -2v-2s0 -2 2 -2"
+							fill="currentColor"
+							stroke-width="2"></path>
+						<path
+							d="M3 37h42s2 0 2 2v2s0 2 -2 2h-42s-2 0 -2 -2v-2s0 -2 2 -2"
+							fill="currentColor"
+							stroke-width="2"></path>
+					</g>
+				</svg></button>
 			{#if menuExpanded}
 				<ul
 					id="menu"
@@ -115,22 +137,22 @@
 
 <style>
 	nav {
-		--background: var(--color-bg-0);
+		--background: light-dark(var(--color-bg-0), var(--color-bg-dark));
 	}
 
-	svg {
+	.nav-decoration {
 		width: 2em;
 		height: 3em;
 		display: block;
 	}
 
-	path {
+	.nav-decoration path {
 		fill: var(--background);
 	}
 
 	#menu {
 		list-style: none;
-		border: 1px solid black;
+		border: 1px solid light-dark(black, white);
 		position: absolute;
 		background: var(--background);
 		display: flex;
@@ -143,9 +165,10 @@
 		text-decoration: none;
 	}
 
-	#menu a[aria-current='page'] {
-		text-decoration: underline;
-		text-decoration-color: var(--color-text);
+	.menubutton-icon {
+		color: CanvasText;
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 
 	.horizontal-menu {
@@ -166,9 +189,10 @@
 		height: 100%;
 	}
 
-	.horizontal-menu li[aria-current='page'] {
+	.horizontal-menu li[aria-current='page'],
+	#menu a[aria-current='page'] {
 		text-decoration: underline;
-		text-decoration-color: var(--color-text);
+		text-decoration-color: light-dark(var(--color-text), var(--color-bg));
 	}
 
 	.horizontal-menu a {
@@ -176,7 +200,7 @@
 		height: 100%;
 		align-items: center;
 		padding: 0 0.5rem;
-		color: var(--color-text);
+		color: light-dark(var(--color-text), var(--color-bg));
 		font-weight: 700;
 		font-size: 1rem;
 		letter-spacing: 0.1em;
@@ -184,8 +208,9 @@
 		transition: color 0.2s linear;
 	}
 
-	a:hover {
-		color: var(--color-theme-1);
+	a:hover,
+	#menu a:hover {
+		color: light-dark(var(--color-theme-1), var(--color-theme-4));
 		text-decoration: underline;
 	}
 
